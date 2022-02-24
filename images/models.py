@@ -23,17 +23,17 @@ class Images(models.Model):
         return str(self.id)
 
     def save(self, *args, **kwargs):
-        print(self.image)
+        # print(self.image)
         img = Image.open(self.image)
         img_array = image.img_to_array(img)
-        print(img_array)
-        print(img_array.shape)
+        # print(img_array)
+        # print(img_array.shape)
         img = img_array/255
         # resized_img = cv2.resize(img,(256,256))
         # print(resized_img.shape)
 
         ready = np.expand_dims(img, axis = 0)
-        print(ready.shape)
+        # print(ready.shape)
         
         try:
             file_model = os.path.join(settings.BASE_DIR, 'custom_model_dense48.h5')
@@ -43,8 +43,8 @@ class Images(models.Model):
                 model = load_model(file_model)
                 pred = np.argmax(model.predict(ready), axis = 1)
                 self.result = str(pred)
-                print(f'classified as {pred}')
+                # print(f'classified as {pred}')
         except:
-            print("Failed to clasiify")
+            # print("Failed to clasiify")
             self.result = "failed to clasify"
         return super().save(*args, **kwargs)

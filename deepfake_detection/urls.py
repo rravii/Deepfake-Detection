@@ -18,12 +18,15 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from images import views
+from images.views import MainView,home
 
 urlpatterns = [
-    path('', views.home),
+    path('', MainView.as_view(), name='main-view'),
+    path('upload/', home, name='upload'),
     path('admin/', admin.site.urls),
     path('api/', include('images.api.urls')),
     path('api-auth/', include('rest_framework.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
