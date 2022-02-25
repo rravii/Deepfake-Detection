@@ -8,10 +8,11 @@ import cv2, os
 import numpy as np
 import tensorflow as tf
 
-# Create your models here.
+# Models Creation.
 class Images(models.Model):
     image = models.ImageField(upload_to='image')
-    result = models.CharField(max_length=2, blank=True)
+    result = models.CharField(max_length=5, blank=True)
+    percent = models.FloatField(max_length=10, blank=True)
     updated = models.DateTimeField(auto_now= True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -23,17 +24,11 @@ class Images(models.Model):
         return str(self.id)
 
     def save(self, *args, **kwargs):
-        # print(self.image)
+        prediction_class = ["Fake", "Real"]
         img = Image.open(self.image)
         img_array = image.img_to_array(img)
-        # print(img_array)
-        # print(img_array.shape)
         img = img_array/255
-        # resized_img = cv2.resize(img,(256,256))
-        # print(resized_img.shape)
-
         ready = np.expand_dims(img, axis = 0)
-        # print(ready.shape)
         
         try:
             file_model = os.path.join(settings.BASE_DIR, 'custom_model_dense48.h5')
@@ -41,10 +36,14 @@ class Images(models.Model):
 
             with graph.as_default():
                 model = load_model(file_model)
-                pred = np.argmax(model.predict(ready), axis = 1)
+                prediction = model.predict(ready)
+                pred = np.argmax(prediction, axis = 1)
+                percent = prediction[0][pred] * 100
+                percent = int(percent * 1000)/1000;
+                pred = prediction_class[pred[0]]
+                print(pred)
                 self.result = str(pred)
-                # print(f'classified as {pred}')
+                self.percent = str(percent)
         except:
-            # print("Failed to clasiify")
             self.result = "failed to clasify"
         return super().save(*args, **kwargs)

@@ -24,35 +24,26 @@ class MainView(TemplateView):
     template_name = 'form.html'
 
 # Create your views here.
-def home(request):
+def mtcnn(request):
     file_list = []
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     mtcnn = MTCNN(margin=120, image_size = 256, keep_all=True, post_process=False, device= device)
-
+    
     if request.method == "POST":
-        # form = ImageForm(request.POST, request.FILES)
-        # if form.is_valid():
-            # files = request.FILES.getlist('image')
             files = request.FILES.getlist('file')
-            # print(files)
 
             for file in files:
                 img1 = Image.open(file)
                 img1 = np.array(img1)
-                # print(img1.shape)
                 
                 if img1.shape[2] == 4:
                     img = img1[:,:,:3]
                 else:
                     img = img1
 
-                # print(img)
-
-                
                 faces = mtcnn(img)
                 for i in range(len(faces)):
-                    
                     face_img = faces[i].permute(1, 2, 0).numpy()
                     face_img = cv2.cvtColor(face_img, cv2.COLOR_BGR2RGB)
                     ret, buf = cv2.imencode('.jpg', face_img)
@@ -64,12 +55,9 @@ def home(request):
                     print(new_file.result)
                     file_list.append({
                         'url':new_file.image.url,
-                        'result': new_file.result
+                        'result': new_file.result,
+                        'percent': new_file.percent
                     });
-                    # file_list.append(new_file.id)
-                    
-    # images_ids = Images.objects.get(file_list)
-    print(file_list)
 
     return HttpResponse(json.dumps({
         'images': file_list

@@ -18,11 +18,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from images import views
-from images.views import MainView,home
+from images.views import MainView, mtcnn
 
 urlpatterns = [
     path('', MainView.as_view(), name='main-view'),
-    path('upload/', home, name='upload'),
+    path('upload/', mtcnn, name='upload'),
     path('admin/', admin.site.urls),
     path('api/', include('images.api.urls')),
     path('api-auth/', include('rest_framework.urls'))

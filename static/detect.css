@@ -1,6 +1,19 @@
+.c-title{
+  font-size: 100%;
+}
+
+.out-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.c-text{
+  font-size: 90%;
+}
+
 .box-container{
-  width: 60vw;
-  height: 80vh;
+  /* width: 60vw;
+  height: 80vh; */
   margin: 0 auto;
 }
 
@@ -15,19 +28,19 @@
     background: white;
     width: 100%;
     height: 100%;
-    box-shadow: 0 5px 100px 0 
+    box-shadow: 0 5px 100px 10px 
                 rgba(178,246,255, 0.5);
     border-radius: 10px;
   }
 
 #myVideo {
     position: fixed;
-    right: 0;
-    left: 0;
+    /* right: 0;
+    left: 0; */
     top: 0;
     bottom: 0;
     max-width: 100vw;
-    /* max-height: 100vh; */
+    min-height: 100vh;
     object-fit: fill;
     background-size: 100% 100%;
     z-index: -2;
@@ -40,7 +53,7 @@ left: 0;
 height: 100%;
 width: 100%;
 background-color: black;
-opacity: 0.5;
+/* opacity: 0.5; */
 z-index: -1;
 }
 

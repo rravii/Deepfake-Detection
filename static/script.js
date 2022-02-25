@@ -11,31 +11,35 @@ const myDropzone = new Dropzone("#my-dropzone",{
         const holderElement = document.getElementById('classificationResult')
         if(res && 'images' in res){
             res.images.forEach(item=>{
-                const div1 = document.createElement('div')
-                div1.classList = 'card'
-                const div2 = document.createElement('div')
-                div2.classList = 'card row no-gutters'
-                const div3 = document.createElement('div')
-                div3.classList = 'col-sm-5'
+                const mainCard = document.createElement('div')
+                mainCard.classList = 'card mt-2'
+                const row = document.createElement('div')
+                row.classList = 'row no-gutters'
+                const col5 = document.createElement('div')
+                col5.classList = 'col-sm-5'
                 // div.style.minWidth = '5rem';
                 const image = document.createElement('img')
-                image.classList = 'card-img rounded-circle'
+                image.classList = 'card-img rounded-circle out-img'
                 image.src= item.url
-                div3.appendChild(image)
-                const div4 = document.createElement('div')
-                div4.classList = 'col-sm-7'
+                col5.appendChild(image)
+                const col7 = document.createElement('div')
+                col7.classList = 'col-sm-5'
                 const cardBody = document.createElement('div')
                 cardBody.classList = 'card-body'
                 const cardTitle = document.createElement('h5')
-                cardTitle.classList = 'card-title'
+                cardTitle.classList = 'card-title c-title'
                 cardTitle.innerText = item.result
-                const cardText = document.createElement('p')
-                cardText.innerText = 'Percent:' + item.result
-                cardBody.appendChild(cardTitle,cardText)
-                div4.appendChild(cardBody)
-                div2.appendChild(div3,div4)
-                div1.appendChild(div2)
-                holderElement.prepend(div1)
+                const cardText = document.createElement('h5')
+                cardText.classList = 'c-text'
+                cardText.innerText = item.percent + "%"
+                cardBody.appendChild(cardTitle)
+                cardBody.appendChild(cardText)
+                col7.appendChild(cardBody)
+                row.appendChild(col5)
+                row.appendChild(col7)
+
+                mainCard.appendChild(row)
+                holderElement.prepend(mainCard)
             })
         }
 
