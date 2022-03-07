@@ -12,18 +12,18 @@ const myDropzone = new Dropzone("#my-dropzone",{
         if(res && 'images' in res){
             res.images.forEach(item=>{
                 const mainCard = document.createElement('div')
-                mainCard.classList = 'card mt-2'
+                mainCard.classList = 'card mb-2'
                 const row = document.createElement('div')
-                row.classList = 'row no-gutters'
+                row.classList = 'row align-items-center'
                 const col5 = document.createElement('div')
-                col5.classList = 'col-sm-5'
+                col5.classList = 'col-sm-4 p-2'
                 // div.style.minWidth = '5rem';
                 const image = document.createElement('img')
                 image.classList = 'card-img rounded-circle out-img'
                 image.src= item.url
                 col5.appendChild(image)
                 const col7 = document.createElement('div')
-                col7.classList = 'col-sm-5'
+                col7.classList = 'col-sm-8'
                 const cardBody = document.createElement('div')
                 cardBody.classList = 'card-body'
                 const cardTitle = document.createElement('h5')
@@ -54,7 +54,6 @@ function on() {
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
-
 
 // popup credentials
 
