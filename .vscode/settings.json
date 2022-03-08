@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/66972fd2-90ce-4834-b772-196e5ab76d61/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Deepfake-Detection",
+    "appService.deploySubpath": "."
+}
