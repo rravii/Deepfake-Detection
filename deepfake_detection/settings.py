@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     'deepfake-detection.azurewebsites.net',
     'localhost',
     '127.0.0.1',
-    '40.69.147.94'
+    '40.69.147.94',
+    'deepfake.alishdahal.com.np'
 ]
 
 
