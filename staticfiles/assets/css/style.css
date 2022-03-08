@@ -725,7 +725,7 @@ section {
 #services{
   width: 100%;
   min-height: 100vh;
-  background: url("../img/layout.jpg") center top no-repeat;
+  background: url("../img/layout.JPG") center top no-repeat;
   background-size: cover;
   position: relative;
 }
