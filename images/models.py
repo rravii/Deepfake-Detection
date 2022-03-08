@@ -12,7 +12,7 @@ import tensorflow as tf
 class Images(models.Model):
     image = models.ImageField(upload_to='image')
     result = models.CharField(max_length=5, blank=True)
-    percent = models.FloatField(max_length=10, blank=True)
+    percent = models.FloatField(max_length=10, blank=True, null=True)
     updated = models.DateTimeField(auto_now= True)
     created = models.DateTimeField(auto_now_add=True)
 
