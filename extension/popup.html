@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>DeepFake Detector</title>
+    <link rel="stylesheet" type="text/css" href="external/jquery-ui.min.css">
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+    <div id="container">
+        <div class="statusdivcontainer">
+            <div id="statusdiv" style="padding: 7px 0px;">
+                <table style="width:100%;" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="padding:0px 10px 0px 0px;">
+                            <div id="foundimagesinnerdiv" style="white-space:nowrap;white-space:nowrap;padding: 7px 0px 7px 0px;">
+                                <span messagesKey="searchingImagesLabel" id="searchingimages" class="localizedSpan">Searching images...</span>
+                                <span messagesKey="foundLabel" class="localizedSpan" id="numimagesfound" style="display:none;">Found %n images</span></div>
+                        </td>
+                    </tr>
+                    <tr id="toolsDiv">
+                        <td colspan="2">
+                            <div class="filters">
+                                <div tabindex="1">
+                                    <span class="menuLabel">Type</span><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+                                    <div class="selectMenu typeMenu">
+                                        <div typeConf="JPG">JPG</div>
+                                        <div typeConf="PNG">PNG</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="imgsContainer">
+            <div id="spinner" class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="external/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="external/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+    <div id="manyfiles" style="display:none;position: absolute;width: 100%;height: 100%;z-index: 1000;background: rgba(0,0,0,0.4);">
+        <div style="padding:0px 10px 10px 10px;box-sizing: border-box;position: absolute;top: 50%;left: 50%;background: #fff;width: 400px;height: 320px;margin-left: -200px;margin-top: -125px;box-shadow: 0px 0px 20px rgba(0,0,0,0.6);border-radius: 5px;font-size:15px;">
+            <h2><span messagesKey="manyfilesnum" class="localizedSpan" id="manyfilesnum">Download %n images</span></h2>
+            <p id="chromemanyfileswarning">
+                <span messagesKey="makesurechrome" class="localizedSpan">Make sure you don't have selected the 'Ask where to save each file before downloading' checkbox in <a href="chrome://settings/downloads" target="_blank">Chrome Settings --> Advanced --> Download section.</a></span><br>
+                <br>
+                <span messagesKey="otherwisechrome" class="localizedSpan">Otherwise Chrome by design will popup the Save as... dialog for each file :-(</span>
+            </p>
+            <p id="firefoxmanyfileswarning" style="display:none;">
+                <span messagesKey="makesurefirefox" class="localizedSpan">Make sure you don't have selected the 'Always ask where to save files' checkbox in Firefox Settings --> Files and Applications section.</span><br>
+                <br>
+                <span messagesKey="otherwisefirefox" class="localizedSpan">Otherwise Firefox by design will popup the Save as... dialog for each file :-(</span>
+            </p>
+            <p>
+                <input type="checkbox" name="donotbotherme" id="donotbotherme"/> <label for="donotbotherme" messagesKey="donotshowdialogagain" class="localizedSpan">Do not show this dialog again</label>
+            </p>
+            <div style="position: relative;left:84px;top:12px;font-size:16px;">
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
+

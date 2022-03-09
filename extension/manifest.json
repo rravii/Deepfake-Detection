@@ -1,0 +1,33 @@
+{
+
+    "manifest_version": 2,
+    "name": "DeepFake Detector",
+    "short_name":"DetectDEEPfake",
+    "description": "scan the web images and detect whether it is real or fake",
+    "version": "1",
+
+    "browser_action": {
+        "default_icon": "DetectDEEPfake48.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab", 
+        "downloads",
+        "storage", 
+        "webRequest",
+        "webRequestBlocking",
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>",
+        "cookies"
+    ],
+    "icons": {"128": "DetectDEEPfake128.png" },
+    "web_accessible_resources": [
+        "/*"
+    ],
+    "background": {
+        "scripts": [
+            "fixR.js"
+        ]
+    }
+}
