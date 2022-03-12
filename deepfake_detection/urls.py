@@ -18,11 +18,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from images import views
-from images.views import MainView, mtcnn
+from images.views import MainView, mtcnn, get_batch
 
 urlpatterns = [
     path('', MainView.as_view(), name='main-view'),
     path('upload/', mtcnn, name='upload'),
+    path('batch/<id>',get_batch,name="get_batch"),
     path('admin/', admin.site.urls),
     path('api/', include('images.api.urls')),
     path('api-auth/', include('rest_framework.urls'))

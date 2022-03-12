@@ -1,3 +1,4 @@
+from turtle import back
 from django.db import models
 from django.conf import settings
 from PIL import Image
@@ -9,6 +10,15 @@ import numpy as np
 import tensorflow as tf
 
 # Models Creation.
+class Batch(models.Model): 
+    number_of_faces = models.IntegerField(default=0)
+    number_of_processed_faces = models.IntegerField(default=0)
+    faces_path = models.TextField(blank=True)
+    status = models.IntegerField(default=0) # 0 ==> croppingImage, 1==> processing image, 2==>completed
+    completed = models.DateTimeField(auto_now= True)
+    created = models.DateTimeField(auto_now_add=True)
+
+
 class Images(models.Model):
     image = models.ImageField(upload_to='image')
     result = models.CharField(max_length=5, blank=True)
